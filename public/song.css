@@ -1,0 +1,12 @@
+body {
+	text-align: center;
+}
+
+h1 {
+	color: red;
+}
+
+.form-group {
+	width: 200px;
+	text-align: center;
+}

@@ -1,0 +1,12 @@
+body {
+	text-align: center;
+}
+
+h1 {
+	color: red;
+}
+
+#usernameInput {
+	width: 200px;
+	text-align: center;
+}
