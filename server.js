@@ -1,12 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-// var router = require('./routes/index.js');
 
 var app = express();
-
-
-
 
 
 // create application/x-www-form-urlencoded parser
@@ -22,22 +18,38 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/views'));
 
 
+//=========================//
+//controller for /song
+//=========================//
+
+var data = [];
 
 // serve static files from song folder
 app.get('/song', function (req, res) {
-  res.sendFile('./views/song/song.html' , { root : __dirname});
+  res.render('./song/song.ejs', {projectSongs: data});
 });
 
 // app.POST for song page:
 // urlencodedParser will pass the info from /song after we click submit
 app.post('/song', urlencodedParser, function (req, res) {
 	console.log(req.body);
-	//now we'll have access to req.body data in song-success
-  	res.render('./song/song-success.ejs' , {data: req.body});
+	data.push(req.body);
+	//now we'll have access to req.body data in song-success(this was only for testing)
+	//IMPORTANT: in the tutorial, it said to use res.json(data), but that takes the page to JSON page.
+	//res.redirect('/song') will redirect the page to '/song' again (basically like a refresh) instead of JSON page
+  	res.redirect('/song');
 });
 
+// app.delete('/song', urlencodedParser, function (req, res) {
+// 	console.log(req.body.songYoutube);
+// 	//now we'll have access to req.body data in song-success
+//   	res.render('./song/song-success.ejs' , {data: req.body});
+// });
 
 
+//=========================//
+//controller for /choreo
+//=========================//
 
 // serve static files from choreo folder
 app.get('/choreo', function (req, res) {
@@ -51,6 +63,11 @@ app.post('/choreo', urlencodedParser, function (req, res) {
   	// res.sendFile('./views/song/song.html' , { root : __dirname});
 });
 
+
+
+//=========================//
+//controller for /team
+//=========================//
 
 
 // serve static files from team folder
@@ -93,3 +110,4 @@ app.post('/team', urlencodedParser, function (req, res) {
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000);
+	console.log("You're listening to port 3000");
