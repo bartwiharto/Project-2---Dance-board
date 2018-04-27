@@ -32,7 +32,8 @@ app.get('/song', function (req, res) {
 // urlencodedParser will pass the info from /song after we click submit
 app.post('/song', urlencodedParser, function (req, res) {
 	console.log(req.body);
-  	// res.sendFile('./views/song/song.html' , { root : __dirname});
+	//now we'll have access to req.body data in song-success
+  	res.render('./song/song-success.ejs' , {data: req.body});
 });
 
 
