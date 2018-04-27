@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Song Page</title>
+	<title>Inspo: Team</title>
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymousd">
 
@@ -11,28 +11,28 @@
 <body>
 	<h1>Which team inspires you?</h1>
 
-	<form class="form-inline" id="teamInput">
+	<form class="form-inline" id="teamInput" method="POST" action="/team">
 		
 		<div class="form-group">
-		    <input type="string" class="form-control" id="teamName" placeholder="Team Name">
+		    <input type="string" class="form-control" name="teamName" placeholder="Team Name">
 		</div>
 
 <br><br>
 
 		<div class="form-group">
-		    <input type="string" class="form-control" id="teamTheme" placeholder="Theme (If applicable)">
+		    <input type="string" class="form-control" name="teamTheme" placeholder="Competition">
 		</div>
 
 <br><br>
 
 		<div class="form-group">
-		    <input type="string" class="form-control" id="teamYear" placeholder="Year">
+		    <input type="string" class="form-control" name="teamYear" placeholder="Year">
 		</div>
 
 <br><br>
 
 		<div class="form-group">
-		    <input type="string" class="form-control" id="teamYoutube" placeholder="Youtube Link">
+		    <input type="string" class="form-control" name="teamYoutube" placeholder="Youtube Link">
 		</div>
 
 <br><br>
