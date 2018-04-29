@@ -38,13 +38,12 @@ app.post('/song', urlencodedParser, function (req, res) {
 	//IMPORTANT: in the tutorial, it said to use res.json(data), but that takes the page to JSON page.
 	//res.redirect('/song') will redirect the page to '/song' again (basically like a refresh) instead of JSON page
   	res.redirect('/song');
-});
+}); 
 
-// app.delete('/song', urlencodedParser, function (req, res) {
-// 	console.log(req.body.songYoutube);
-// 	//now we'll have access to req.body data in song-success
-//   	res.render('./song/song-success.ejs' , {data: req.body});
-// });
+app.delete('/song', urlencodedParser, function (req, res) {
+	console.log(req.body);
+  	res.redirect('/song');
+});
 
 
 //=========================//

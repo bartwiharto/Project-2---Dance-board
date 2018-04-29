@@ -6,7 +6,7 @@ $(document).ready(function(){
 
       var songName = $('form input');
       var list = [{artistName: artistName.val()}, {songName: songName.val()}, {songYear: songYear.val()}, {songYoutube: songYoutube.val()}];
-      
+
       $.ajax({
         type: 'POST',
         url: '/song',
@@ -14,8 +14,6 @@ $(document).ready(function(){
         success: function(data){
           //do something with the data via front-end framework
           location.reload();
-
-          // $('#outputSong').append(`<li>${data.songName}</li>`);
         }
       });
 
@@ -23,16 +21,21 @@ $(document).ready(function(){
 
   });
 
-  $('li').on('click', function(){
-      var songs = $(this).text().replace(/ /g, "-");
+$('#songEntry').on('click', function(){
+      var item = $(this).text().replace(/ /g, "-");
       $.ajax({
         type: 'DELETE',
-        url: '/song/' + songs,
+        url: '/song/' + songName,
         success: function(data){
           //do something with the data via front-end framework
           location.reload();
         }
       });
   });
+
+$('#buttonDelete').click(function(){
+    alert('button clicked');
+
+});
 
 });

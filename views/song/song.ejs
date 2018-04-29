@@ -34,21 +34,26 @@
 
 <br><br>
 
-		<div class="form-group">
+		<div>
 			  <button type="submit" class="btn btn-primary">Submit</button>
-		</div>
+		</div>		
 
 	</form>
+
 
 <hr>
 
 	
 	<%for (var i = 0; i < projectSongs.length; i++) {%>
-		<div>
+		<div id="songEntry">
 			<p>ARTIST NAME: <%= projectSongs[i].artistName %></p>
 			<p>SONG NAME: <%= projectSongs[i].songName %></p>
 			<p>YEAR: <%= projectSongs[i].songYear %></p>
 			<p>YouTube: <%= projectSongs[i].songYoutube %></p>
+
+			<div>
+				<button class="btn btn-primary" id="buttonDelete">DELETE</button>
+			</div>
 		</div>
 	<% } %>
 
