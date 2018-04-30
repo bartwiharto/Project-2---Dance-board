@@ -4,7 +4,6 @@
 	<title>Inspo: Choreographers</title>
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymousd">
-
 	<link rel="stylesheet" type="text/css" href="choreographers.css">
 </head>
 
@@ -42,6 +41,17 @@
 		</div>
 
 	</form>
+
+<hr>
+
+	<%for (var i = 0; i < projectChoreo.length; i++) {%>
+		<div id="choreoEntry">
+			<p>CHOREOGRAPHER'S NAME: <%= projectChoreo[i].choreoName %></p>
+			<p>SONG NAME: <%= projectChoreo[i].choreoSongName %></p>
+			<p>YEAR: <%= projectChoreo[i].choreoYear %></p>
+			<p>YouTube: <%= projectChoreo[i].choreoYoutube %></p>
+		</div>
+	<% } %>
 
 
 

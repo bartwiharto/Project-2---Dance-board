@@ -4,12 +4,12 @@ $(document).ready(function(){
 
       e.preventDefault();
 
-      var songName = $('form input');
-      var list = [{artistName: artistName.val()}, {songName: songName.val()}, {songYear: songYear.val()}, {songYoutube: songYoutube.val()}];
+      var choreoName = $('form input');
+      var list = [{choreoName: choreoName.val()}, {choreoSongName: choreoSongName.val()}, {choreoYear: choreoYear.val()}, {choreoYoutube: choreoYoutube.val()}];
 
       $.ajax({
         type: 'POST',
-        url: '/song',
+        url: '/choreo',
         data: list,
         success: function(data){
           //do something with the data via front-end framework
@@ -21,11 +21,11 @@ $(document).ready(function(){
 
   });
 
-$('li').on('click', function(){
+$('p').on('click', function(){
       var item = $(this).text().replace(/ /g, "-");
       $.ajax({
         type: 'DELETE',
-        url: '/song/' + songName,
+        url: '/choreo/' + choreoName,
         success: function(data){
           //do something with the data via front-end framework
           location.reload();

@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 
 var app = express();
 
+var db = mongoose.connect("mongodb://localhost/projecttwo");
+
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
@@ -22,56 +24,116 @@ app.use(express.static(__dirname + '/views'));
 //controller for /song
 //=========================//
 
-var data = [];
+
+var songSchema = new mongoose.Schema({
+		artistName: String,
+		songName: String,
+		songYear: String,
+		songYoutube: String
+});
+
+var Song = mongoose.model('Song', songSchema);
+
+var dataSong = [];
 
 // serve static files from song folder
 app.get('/song', function (req, res) {
-  res.render('./song/song.ejs', {projectSongs: data});
+	res.render('./song/song.ejs', {projectSongs: dataSong});
 });
 
 // app.POST for song page:
 // urlencodedParser will pass the info from /song after we click submit
 app.post('/song', urlencodedParser, function (req, res) {
 	console.log(req.body);
-	data.push(req.body);
+	dataSong.push(req.body);
 	//now we'll have access to req.body data in song-success(this was only for testing)
 	//IMPORTANT: in the tutorial, it said to use res.json(data), but that takes the page to JSON page.
 	//res.redirect('/song') will redirect the page to '/song' again (basically like a refresh) instead of JSON page
   	res.redirect('/song');
-}); 
 
-app.delete('/song', urlencodedParser, function (req, res) {
-	console.log(req.body);
-  	res.redirect('/song');
+var songOne = Song({
+		artistName: req.body.artistName,
+		songName: req.body.songName,
+		songYear: req.body.songYear,
+		songYoutube: req.body.songYoutube
+}).save(function(err) {
+	if (err) throw err;
+	console.log('Song Saved');
 });
 
+}); 
 
-//=========================//
-//controller for /choreo
-//=========================//
+// //--DELETE FEATURE DOES NOT WORK--//
+
+// // app.delete('/song', urlencodedParser, function (req, res) {
+// // 	data = data.filter(function(song) {
+// // 	return song.item.replace(/ /g, '-') !== req.params.item;
+// // 	res.json('/song');
+// // 	});
+// // });
+
+
+// //=========================//
+// //controller for /choreo
+// //=========================//
+
+var choreoSchema = new mongoose.Schema({
+		choreoName: String,
+		choreoSongName: String,
+		choreoYear: String,
+		choreoYoutube: String
+});
+
+var Choreo = mongoose.model('Choreo', choreoSchema);
+
+var dataChoreo = [];
+
+// var choreoOne = Choreo ({
+// 		choreoName: 'Nika Klujn',
+// 		choreoSongName: 'Move Your Body',
+// 		choreoYear: '2017',
+// 		choreoYoutube: 'https://www.youtube.com/watch?v=yevfxvt5r7Y'
+// }).save(function(err){
+// 	if(err) throw err;
+// 	console.log('Nika saved');
+// });
 
 // serve static files from choreo folder
 app.get('/choreo', function (req, res) {
-  res.sendFile('./views/choreo/choreographers.html' , { root : __dirname});
+  res.render('./choreo/choreographers.ejs', {projectChoreo: dataChoreo});
 });
 
 // app.POST for choreo page:
 // urlencodedParser will pass the info from /choreo after we click submit
 app.post('/choreo', urlencodedParser, function (req, res) {
 	console.log(req.body);
-  	// res.sendFile('./views/song/song.html' , { root : __dirname});
+	dataChoreo.push(req.body);
+res.redirect('/choreo');
+
+var choreoOne = Choreo({
+		choreoName: req.body.choreoName,
+		choreoSongName: req.body.choreoSongName,
+		choreoYear: req.body.choreoYear,
+		choreoYoutube: req.body.choreoYoutube
+}).save(function(err) {
+	if (err) throw err;
+	console.log('Choreographer Saved');
 });
 
+});
+
+// //--DELETE FEATURE DOES NOT WORK--//
 
 
-//=========================//
-//controller for /team
-//=========================//
+
+// //=========================//
+// //controller for /team
+// //=========================//
 
 
 // serve static files from team folder
 app.get('/team', function (req, res) {
-  res.sendFile('./views/team/team.html' , { root : __dirname});
+  res.sendFile('./team/team.ejs' , { root : __dirname});
 });
 
 // app.POST for team page:
@@ -110,3 +172,18 @@ app.post('/team', urlencodedParser, function (req, res) {
 // listen on port 3000
 app.listen(process.env.PORT || 3000);
 	console.log("You're listening to port 3000");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,11 +5,11 @@ $(document).ready(function(){
       e.preventDefault();
 
       var songName = $('form input');
-      var list = [{artistName: artistName.val()}, {songName: songName.val()}, {songYear: songYear.val()}, {songYoutube: songYoutube.val()}];
+      var list = [{teamName: teamName.val()}, {competition: competition.val()}, {teamYear: teamYear.val()}, {teamYoutube: teamYoutube.val()}];
 
       $.ajax({
         type: 'POST',
-        url: '/song',
+        url: '/team',
         data: list,
         success: function(data){
           //do something with the data via front-end framework
@@ -25,7 +25,7 @@ $('li').on('click', function(){
       var item = $(this).text().replace(/ /g, "-");
       $.ajax({
         type: 'DELETE',
-        url: '/song/' + songName,
+        url: '/team/' + teamName,
         success: function(data){
           //do something with the data via front-end framework
           location.reload();

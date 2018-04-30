@@ -10,3 +10,18 @@ h1 {
 	width: 200px;
 	text-align: center;
 }
+
+p {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: arial;
+    font-size: 20px;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+p:hover {
+    text-decoration: line-through;
+    background: rgba(0,0,0,0.2);
+}
