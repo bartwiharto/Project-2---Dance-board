@@ -19,6 +19,15 @@ app.set('view engine', 'ejs');
 // serve static files from public folder
 app.use(express.static(__dirname + '/views'));
 
+//=========================//
+//controller for /directory
+//=========================//
+
+// serve static files from song folder
+app.get('/directory', function (req, res) {
+  	res.render('./directory/directory.ejs' , { root : __dirname});
+});
+
 
 //=========================//
 //controller for /song
@@ -88,16 +97,6 @@ var Choreo = mongoose.model('Choreo', choreoSchema);
 
 var dataChoreo = [];
 
-// var choreoOne = Choreo ({
-// 		choreoName: 'Nika Klujn',
-// 		choreoSongName: 'Move Your Body',
-// 		choreoYear: '2017',
-// 		choreoYoutube: 'https://www.youtube.com/watch?v=yevfxvt5r7Y'
-// }).save(function(err){
-// 	if(err) throw err;
-// 	console.log('Nika saved');
-// });
-
 // serve static files from choreo folder
 app.get('/choreo', function (req, res) {
   res.render('./choreo/choreographers.ejs', {projectChoreo: dataChoreo});
@@ -108,7 +107,7 @@ app.get('/choreo', function (req, res) {
 app.post('/choreo', urlencodedParser, function (req, res) {
 	console.log(req.body);
 	dataChoreo.push(req.body);
-res.redirect('/choreo');
+	res.redirect('/choreo');
 
 var choreoOne = Choreo({
 		choreoName: req.body.choreoName,
@@ -130,41 +129,43 @@ var choreoOne = Choreo({
 // //controller for /team
 // //=========================//
 
+var teamSchema = new mongoose.Schema({
+		teamName: String,
+		competition: String,
+		teamYear: String,
+		teamYoutube: String
+});
+
+var Team = mongoose.model('Team', teamSchema);
+
+var dataTeam = [];
 
 // serve static files from team folder
 app.get('/team', function (req, res) {
-  res.sendFile('./team/team.ejs' , { root : __dirname});
+  res.render('./team/team.ejs' , {projectTeam: dataTeam});
 });
 
 // app.POST for team page:
 // urlencodedParser will pass the info from /team after we click submit
 app.post('/team', urlencodedParser, function (req, res) {
 	console.log(req.body);
-  	// res.sendFile('./views/song/song.html' , { root : __dirname});
+	dataTeam.push(req.body);
+	res.redirect('/team');
+
+	var teamOne = Team({
+		teamName: req.body.teamName,
+		competition: req.body.competition,
+		teamYear: req.body.teamYear,
+		teamYoutube: req.body.teamYoutube
+	}).save(function(err) {
+		if (err) throw err;
+		console.log('Choreographer Saved');
+	});
+
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// //--DELETE FEATURE DOES NOT WORK--//
 
 
 
