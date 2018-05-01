@@ -72,19 +72,19 @@ var songOne = Song({
 
 }); 
 
-// //--DELETE FEATURE DOES NOT WORK--//
+//--DELETE FEATURE DOES NOT WORK--//
 
-// // app.delete('/song', urlencodedParser, function (req, res) {
-// // 	data = data.filter(function(song) {
-// // 	return song.item.replace(/ /g, '-') !== req.params.item;
-// // 	res.json('/song');
-// // 	});
-// // });
+// app.delete('/song', urlencodedParser, function (req, res) {
+// 	data = data.filter(function(song) {
+// 	return song.item.replace(/ /g, '-') !== req.params.item;
+// 	res.json('/song');
+// 	});
+// });
 
 
-// //=========================//
-// //controller for /choreo
-// //=========================//
+//=========================//
+//controller for /choreo
+//=========================//
 
 var choreoSchema = new mongoose.Schema({
 		choreoName: String,
@@ -125,9 +125,9 @@ var choreoOne = Choreo({
 
 
 
-// //=========================//
-// //controller for /team
-// //=========================//
+//=========================//
+//controller for /team
+//=========================//
 
 var teamSchema = new mongoose.Schema({
 		teamName: String,
@@ -165,7 +165,7 @@ app.post('/team', urlencodedParser, function (req, res) {
 });
 
 
-// //--DELETE FEATURE DOES NOT WORK--//
+//--DELETE FEATURE DOES NOT WORK--//
 
 
 
